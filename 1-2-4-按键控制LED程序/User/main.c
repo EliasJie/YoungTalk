@@ -29,6 +29,7 @@ int main (void){//主程序
 
 	KEY_Init();//按键初始化
 
+
 	//主循环
 	while(1){
 
@@ -38,32 +39,46 @@ int main (void){//主程序
 		}else{	
         	GPIO_SetBits(LEDPORT,LED1); //LED灯都为高电平（1） 
 		}
+        
+        //  BitAction  枚举参数 来改变IO的端口 0  、1
+		
+        
+        
+        //示例2：无锁存
+		GPIO_WriteBit(LEDPORT,LED1,(BitAction)(!GPIO_ReadInputDataBit(KEYPORT,KEY1))); 
+       
+        //  BitAction  枚举参数 来改变 (!GPIO_ReadInputDataBit(KEYPORT,KEY1) IO 的端口 0  、1  
+	
 
-		//示例2：无锁存
-//		GPIO_WriteBit(LEDPORT,LED1,(BitAction)(!GPIO_ReadInputDataBit(KEYPORT,KEY1))); 
 
-		//示例3：有锁存
-//		if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
-//			delay_ms(20); //延时去抖动
-//			if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
-//				GPIO_WriteBit(LEDPORT,LED1,(BitAction)(1-GPIO_ReadOutputDataBit(LEDPORT,LED1))); //LED取反
-//				while(!GPIO_ReadInputDataBit(KEYPORT,KEY1)); //等待按键松开 
-//			}
-//		}
+    
 
-		//示例4：有锁存
-//		if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
-//			delay_ms(20); //延时20ms去抖动
-//			if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
-//				//在2个LED上显示二进制加法
-//				a++; //变量加1
-//				if(a>3){ //当变量大于3时清0
-//					a=0; 
-//				}
-//				GPIO_Write(LEDPORT,a); //直接数值操作将变量值写入LED（LED在GPIOB组的PB0和PB1上）
-//				while(!GPIO_ReadInputDataBit(KEYPORT,KEY1)); //等待按键松开 
-//			}
-//		}
+        //示例3：有锁存
+		if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
+			delay_ms(20); //延时去抖动       
+			if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
+				GPIO_WriteBit(LEDPORT,LED1,(BitAction)(1-GPIO_ReadOutputDataBit(LEDPORT,LED1))); //LED取反
+				while(!GPIO_ReadInputDataBit(KEYPORT,KEY1)); //等待按键松开 
+			}
+		}
+         //
+		
+        
+        
+        
+        //示例4：有锁存
+		if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
+			delay_ms(20); //延时20ms去抖动
+			if(!GPIO_ReadInputDataBit(KEYPORT,KEY1)){ //读按键接口的电平
+				//在2个LED上显示二进制加法
+				a++; //变量加1
+				if(a>3){ //当变量大于3时清0
+					a=0; 
+				}
+				GPIO_Write(LEDPORT,a); //直接数值操作将变量值写入LED（LED在GPIOB组的PB0和PB1上）  a=1时，led0点亮；a=2时，led1点亮；a=3时，同时点亮；a=4时，a=0，同时熄灭。
+				while(!GPIO_ReadInputDataBit(KEYPORT,KEY1)); //等待按键松开 
+			}
+		}
 
 
 	}

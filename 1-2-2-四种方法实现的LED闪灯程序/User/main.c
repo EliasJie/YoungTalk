@@ -23,29 +23,41 @@
 int main (void){//主程序
 	RCC_Configuration(); //时钟设置
 	LED_Init();
-	while(1){
+	
+    while(1){
 		
-		//方法1：
-//		GPIO_WriteBit(LEDPORT,LED1,(BitAction)(1)); //LED1接口输出高电平1
-//		delay_us(5000); //延时1秒
-//		GPIO_WriteBit(LEDPORT,LED1,(BitAction)(0)); //LED1接口输出低电平0
-//		delay_us(5000); //延时1秒
 		
-		//方法2：
+        
+        //方法1：
+		GPIO_WriteBit(LEDPORT,LED1,(BitAction)(1)); //LED1接口输出高电平1
+		delay_us(5000); //延时1秒
+		GPIO_WriteBit(LEDPORT,LED1,(BitAction)(0)); //LED1接口输出低电平0
+		delay_us(5000); //延时1秒
+		
+		
+        
+        //方法2：
 		GPIO_WriteBit(LEDPORT,LED1,(BitAction)(1-GPIO_ReadOutputDataBit(LEDPORT,LED1))); //取反LED1
 		delay_ms(500); //延时1秒
+        
+        // 使用枚举参数来改变IO的端口 0  、1  
+		
+        
+        
+        //方法3：
+		GPIO_SetBits(LEDPORT,LED1); //LED灯都为高电平（1）
+		delay_s(1); //延时1秒
+		GPIO_ResetBits(LEDPORT,LED1); //LED灯都为低电平（0）
+		delay_s(1); //延时1秒
 
-		//方法3：
-//		GPIO_SetBits(LEDPORT,LED1); //LED灯都为高电平（1）
-//		delay_s(1); //延时1秒
-//		GPIO_ResetBits(LEDPORT,LED1); //LED灯都为低电平（0）
-//		delay_s(1); //延时1秒
-
-		//方法4
-//		GPIO_Write(LEDPORT,0x0001); //直接数值操作将变量值写入LED
-//		delay_s(2); //延时1秒
-//		GPIO_Write(LEDPORT,0x0000); //直接数值操作将变量值写入LED
-//		delay_s(2); //延时1秒
+		
+        
+        
+        //方法4
+		GPIO_Write(LEDPORT,0x0001); //直接数值操作将变量值写入LED
+		delay_s(2); //延时1秒
+		GPIO_Write(LEDPORT,0x0000); //直接数值操作将变量值写入LED
+		delay_s(2); //延时1秒
 
 	}
 }
