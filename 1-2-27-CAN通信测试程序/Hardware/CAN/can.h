@@ -3,10 +3,13 @@
 #include "sys.h"
 
 
-#define CAN_INT_ENABLE	0	//1 开接收中断，0 关接收中断
+#define CAN_INT_ENABLE	0	
+//定义了是否开启总线的接收模式  1 开接收中断，0 关接收中断
 
 //设置模式和波特率
 //波特率=(pclk1/((1+8+7)*9)) = 36Mhz/16/9 = 250Kbits设定了一个时间单位的长度9
+
+//pclk1 时钟设置 （时钟频率）
 #define tsjw	CAN_SJW_1tq	//设置项目（1~4）
 #define tbs1	CAN_BS1_8tq	//设置项目（1~16）
 #define tbs2	CAN_BS2_7tq	//设置项目（1~8）
