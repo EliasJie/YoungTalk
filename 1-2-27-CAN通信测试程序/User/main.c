@@ -23,6 +23,7 @@
 
 #include "can.h"
 
+
 int main (void){//Ö÷³ÌÐò
 	u8 buff[8];
 	u8 x;
