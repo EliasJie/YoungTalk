@@ -30,7 +30,7 @@ int main (void){//主程序
 	STEP_MOTOR_Init();//步进电机初始化
 
 	while(1){
-		if(!GPIO_ReadInputDataBit(TOUCH_KEYPORT,TOUCH_KEY_A))STEP_MOTOR_4R(3); //当按键A按下时步进电机4步右转		
+		if(!GPIO_ReadInputDataBit(TOUCH_KEYPORT,TOUCH_KEY_A))STEP_MOTOR_4R(3);      //当按键A按下时步进电机4步右转		
 		else if(!GPIO_ReadInputDataBit(TOUCH_KEYPORT,TOUCH_KEY_B))STEP_MOTOR_4L(3); //当按键B按下时步进电机4步左转		
 		else if(!GPIO_ReadInputDataBit(TOUCH_KEYPORT,TOUCH_KEY_C))STEP_MOTOR_8R(3); //当按键C按下时步进电机8步右转
 		else if(!GPIO_ReadInputDataBit(TOUCH_KEYPORT,TOUCH_KEY_D))STEP_MOTOR_8L(3); //当按键D按下时步进电机8步左转

@@ -463,7 +463,7 @@
       <GroupNumber>6</GroupNumber>
       <FileNumber>21</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\Hardware\STEP_MOTOR\step_motor.c</PathWithFileName>
